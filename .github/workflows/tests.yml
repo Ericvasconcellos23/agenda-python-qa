@@ -1,14 +1,52 @@
-name: Testes da agenda
+name: Testes e Qualidade da Agenda
+
 on: [push, pull_request]
+
 jobs:
   test:
+    name: Testes Automatizados e Cobertura
     runs-on: ubuntu-latest
+
+    env:
+      DEBUG: "1"
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12 com cache
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -r requirements.txt
-      - run: python manage.py makemigrations --check --dry-run
-      - run: coverage run --source=lembretes manage.py test
-      - run: coverage report
+          cache: 'pip'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Checagem de integridade e migrações pendentes
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+
+      - name: Executar suíte de testes com Pytest e Coverage
+        run: |
+          coverage run -m pytest
+
+      - name: Validar meta de cobertura (Quality Gate)
+        run: |
+          coverage report -m --fail-under=95
+
+      - name: Gerar relatório de cobertura em HTML
+        if: always()
+        run: |
+          coverage html
+
+      - name: Publicar relatório de cobertura como artefato
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: relatorio-cobertura-html
+          path: htmlcov/
+          retention-days: 14
