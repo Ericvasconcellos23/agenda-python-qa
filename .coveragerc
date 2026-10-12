@@ -1,0 +1,3 @@
+[run]
+source = lembretes
+omit = lembretes/tests.py,lembretes/migrations/*

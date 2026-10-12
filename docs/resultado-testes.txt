@@ -1,0 +1,71 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 23 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: auth, contenttypes, lembretes, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying lembretes.0001_initial... OK
+  Applying sessions.0001_initial...test_anonymous_blocked (lembretes.tests.AgendaTests.test_anonymous_blocked) ... /workspace/scratch/296818c4629f/.venv/lib/python3.12/site-packages/django/core/handlers/base.py:61: UserWarning: No directory at: /workspace/scratch/296818c4629f/agenda/staticfiles/
+  mw_instance = middleware(adapted_handler)
+ok
+test_command_loop (lembretes.tests.AgendaTests.test_command_loop) ... ok
+test_command_once (lembretes.tests.AgendaTests.test_command_once) ... ok
+test_completed (lembretes.tests.AgendaTests.test_completed) ... ok
+test_create_timezone (lembretes.tests.AgendaTests.test_create_timezone) ... ok
+test_csrf (lembretes.tests.AgendaTests.test_csrf) ... ok
+test_delete_cascade (lembretes.tests.AgendaTests.test_delete_cascade) ... ok
+test_disabled_email (lembretes.tests.AgendaTests.test_disabled_email) ... ok
+test_due_no_repeat (lembretes.tests.AgendaTests.test_due_no_repeat) ... ok
+test_duplicate_email (lembretes.tests.AgendaTests.test_duplicate_email) ... ok
+test_edit_resets (lembretes.tests.AgendaTests.test_edit_resets) ... ok
+test_failure_retry (lembretes.tests.AgendaTests.test_failure_retry) ... Falha no envio da atividade id=1; haverá nova tentativa
+ok
+test_forms_render (lembretes.tests.AgendaTests.test_forms_render) ... ok
+test_future (lembretes.tests.AgendaTests.test_future) ... ok
+test_get_cannot_delete (lembretes.tests.AgendaTests.test_get_cannot_delete) ... ok
+test_html_escape (lembretes.tests.AgendaTests.test_html_escape) ... ok
+test_isolation (lembretes.tests.AgendaTests.test_isolation) ... ok
+test_login_logout (lembretes.tests.AgendaTests.test_login_logout) ... ok
+test_past_invalid (lembretes.tests.AgendaTests.test_past_invalid) ... ok
+test_read_isolation (lembretes.tests.AgendaTests.test_read_isolation) ... ok
+test_signup_hashed_normalized (lembretes.tests.AgendaTests.test_signup_hashed_normalized) ... ok
+test_weak_password (lembretes.tests.AgendaTests.test_weak_password) ... ok
+test_zero_send (lembretes.tests.AgendaTests.test_zero_send) ... Falha no envio da atividade id=1; haverá nova tentativa
+ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 13.258s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+ OK
+System check identified no issues (0 silenced).
+Name                                                 Stmts   Miss  Cover
+------------------------------------------------------------------------
+lembretes/__init__.py                                    0      0   100%
+lembretes/forms.py                                      33      0   100%
+lembretes/management/__init__.py                         0      0   100%
+lembretes/management/commands/__init__.py                0      0   100%
+lembretes/management/commands/process_reminders.py      14      0   100%
+lembretes/models.py                                     19      0   100%
+lembretes/services.py                                   31      0   100%
+lembretes/views.py                                      56      1    98%
+------------------------------------------------------------------------
+TOTAL                                                  153      1    99%
