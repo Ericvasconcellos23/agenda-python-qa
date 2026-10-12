@@ -52,3 +52,40 @@ A mensagem aparece ao abrir/atualizar a página. Não há push no celular com o 
 Um único worker é obrigatório nesta versão. Se ele cair após o SMTP aceitar a mensagem e antes de salvar o resultado, a tentativa seguinte pode duplicar o e-mail. As notificações no app são únicas por atividade. Escalar para vários workers exige fila/outbox com controle de concorrência; não basta iniciar outra cópia do comando. Edição/exclusão simultânea com envio já iniciado pode deixar um e-mail antigo em trânsito.
 
 O código é gratuito para executar localmente. Hospedagem contínua e serviços de e-mail podem ter custos. Não há promessa de infraestrutura gratuita permanente ou de software sem erros.
+
+## Validações realizadas
+
+- 23 testes automatizados aprovados, também executados com pytest.
+- Execução automática dos testes pelo GitHub Actions.
+- Acesso manual validado no computador e no telefone pela mesma rede Wi-Fi.
+- Recebimento real de lembrete por e-mail confirmado com Gmail.
+- Inicialização dos lembretes em uma nova janela usando credencial protegida pelo Windows.
+
+### Teste manual de envio de e-mail
+
+Pré-condições: servidor e processo de lembretes ativos, Gmail configurado e conta cadastrada com endereço válido.
+
+Passos:
+1. Criar uma atividade para alguns minutos no futuro.
+2. Marcar "Receber também por e-mail".
+3. Salvar e manter a atividade como agendada.
+4. Aguardar o horário e conferir o aplicativo e a caixa de entrada.
+
+Resultado esperado: mensagem disponível na agenda e e-mail recebido.
+Resultado obtido: recebimento do e-mail confirmado durante a validação manual.
+
+### Investigação de falha
+
+Durante a configuração, o envio falhou na autenticação SMTP.
+Foram verificados os parâmetros carregados, o tamanho da senha de app e o endereço da conta remetente.
+Após corrigir a entrada da credencial e o endereço de e-mail, a autenticação funcionou e o lembrete foi recebido.
+
+## Estado atual e aprendizado
+
+Projeto de estudo e portfólio de QA, executado localmente.
+O computador precisa permanecer ligado com o servidor e o processo de lembretes ativos.
+A hospedagem na nuvem está pendente.
+As mensagens no aplicativo aparecem ao abrir ou atualizar a página; não há notificações push.
+
+O projeto foi desenvolvido com apoio de IA, com execução dos testes e validações manuais pela pessoa responsável pelo portfólio.
+Os testes fornecem evidências de funcionamento nos cenários avaliados e não garantem ausência de defeitos.
